@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data (downloaded at runtime)
+data/
+*.zip
+
+# Model weights (use Git LFS or download separately)
+models/*.keras
+models/*.h5
+
+# Outputs
+outputs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
