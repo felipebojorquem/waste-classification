@@ -106,10 +106,12 @@ def build_datasets(
     rescaling = tf.keras.layers.Rescaling(1.0 / 255)
     augmentation = build_augmentation()
 
+    # Augmentation goes *after* cache so each epoch sees fresh random transforms.
     train_ds = (
         train_ds
-        .map(lambda x, y: (augmentation(rescaling(x), training=True), y), num_parallel_calls=autotune)
+        .map(lambda x, y: (rescaling(x), y), num_parallel_calls=autotune)
         .cache()
+        .map(lambda x, y: (augmentation(x, training=True), y), num_parallel_calls=autotune)
         .prefetch(autotune)
     )
 
@@ -142,8 +144,16 @@ def load_test_images(
         filenames: list of file paths.
     """
     test_dir = Path(test_dir)
-    files_o = sorted(test_dir.glob("O/*"))[:n_per_class]
-    files_r = sorted(test_dir.glob("R/*"))[:n_per_class]
+    valid_ext = {".jpg", ".jpeg", ".png", ".bmp", ".gif"}
+
+    def _list(subdir: str) -> list[Path]:
+        return sorted(
+            p for p in (test_dir / subdir).iterdir()
+            if p.is_file() and p.suffix.lower() in valid_ext
+        )[:n_per_class]
+
+    files_o = _list("O")
+    files_r = _list("R")
     all_files = files_o + files_r
 
     images = np.array([

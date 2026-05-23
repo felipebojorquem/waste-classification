@@ -3,31 +3,20 @@
 from dataclasses import dataclass, field
 from pathlib import Path
 
+_ROOT = Path(__file__).resolve().parents[2]
+
 
 @dataclass(frozen=True)
 class Paths:
     """All project paths relative to project root."""
 
-    root: Path = Path(__file__).resolve().parents[2]
-    data_dir: Path | None = field(default=None)
-    train_dir: Path | None = field(default=None)
-    test_dir: Path | None = field(default=None)
-    models_dir: Path | None = field(default=None)
-    outputs_dir: Path | None = field(default=None)
-    figures_dir: Path | None = field(default=None)
-
-    def __post_init__(self) -> None:
-        defaults = {
-            "data_dir": self.root / "data" / "o-vs-r-split",
-            "train_dir": self.root / "data" / "o-vs-r-split" / "train",
-            "test_dir": self.root / "data" / "o-vs-r-split" / "test",
-            "models_dir": self.root / "models",
-            "outputs_dir": self.root / "outputs",
-            "figures_dir": self.root / "outputs" / "figures",
-        }
-        for attr, default in defaults.items():
-            if getattr(self, attr) is None:
-                object.__setattr__(self, attr, default)
+    root: Path = _ROOT
+    data_dir: Path = field(default_factory=lambda: _ROOT / "data" / "o-vs-r-split")
+    train_dir: Path = field(default_factory=lambda: _ROOT / "data" / "o-vs-r-split" / "train")
+    test_dir: Path = field(default_factory=lambda: _ROOT / "data" / "o-vs-r-split" / "test")
+    models_dir: Path = field(default_factory=lambda: _ROOT / "models")
+    outputs_dir: Path = field(default_factory=lambda: _ROOT / "outputs")
+    figures_dir: Path = field(default_factory=lambda: _ROOT / "outputs" / "figures")
 
 
 @dataclass(frozen=True)
@@ -39,7 +28,7 @@ class DataConfig:
     val_split: float = 0.2
     seed: int = 42
     class_names: tuple[str, str] = ("O", "R")
-    class_labels: dict = field(
+    class_labels: dict[int, str] = field(
         default_factory=lambda: {0: "Organic", 1: "Recyclable"}
     )
     dataset_url: str = (
