@@ -9,12 +9,12 @@ class Paths:
     """All project paths relative to project root."""
 
     root: Path = Path(__file__).resolve().parents[2]
-    data_dir: Path = field(default=None)
-    train_dir: Path = field(default=None)
-    test_dir: Path = field(default=None)
-    models_dir: Path = field(default=None)
-    outputs_dir: Path = field(default=None)
-    figures_dir: Path = field(default=None)
+    data_dir: Path | None = field(default=None)
+    train_dir: Path | None = field(default=None)
+    test_dir: Path | None = field(default=None)
+    models_dir: Path | None = field(default=None)
+    outputs_dir: Path | None = field(default=None)
+    figures_dir: Path | None = field(default=None)
 
     def __post_init__(self) -> None:
         defaults = {
