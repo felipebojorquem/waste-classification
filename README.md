@@ -23,25 +23,26 @@ VGG16 (2014) is deliberately chosen as a well-understood baseline. For productio
 
 ## Results
 
-| Model              | Accuracy | AUC | Params (trainable) |
-| ------------------ | -------- | --- | ------------------ |
-| Feature Extraction | —        | —   | ~131K              |
-| Fine-Tuned         | —        | —   | ~2.5M              |
+| Model              | Accuracy | AUC   | Params (trainable) |
+| ------------------ | -------- | ----- | ------------------ |
+| Feature Extraction | 80%      | 0.871 | ~131K              |
+| Fine-Tuned         | 85%      | 0.946 | ~2.5M              |
 
 > _Fill in after training on your hardware. Results vary by run due to stochastic training._
 
 <details>
 <summary>Training Curves</summary>
 
-<!-- Add after training -->
-<!-- ![Feature Extraction](outputs/figures/curves_extract.png) -->
-<!-- ![Fine-Tuning](outputs/figures/curves_finetune.png) -->
+![Feature Extraction](outputs/figures/curves_extract.png)
+![Fine-Tuning](outputs/figures/curves_finetune.png)
+
 </details>
 
 <details>
 <summary>Grad-CAM Visualization</summary>
 
-<!-- ![Grad-CAM](outputs/figures/gradcam_0.png) -->
+![Grad-CAM](outputs/figures/gradcam_0.png)
+
 </details>
 
 ---
