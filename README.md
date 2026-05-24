@@ -2,7 +2,7 @@
 
 Binary image classifier using **VGG16** transfer learning with fine-tuning, built with TensorFlow / Keras.
 
-> **Live demo:** [HuggingFace Spaces](https://huggingface.co/spaces/felipebojorquem/waste-classification) _(coming soon)_
+> **Live demo:** [HuggingFace Spaces](https://huggingface.co/spaces/felipebojorquem/waste-classification) 
 
 ---
 
