@@ -11,6 +11,8 @@ import os
 # ── Environment setup (must precede TF import) ──────────────────────
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
+os.environ["TF_CUDNN_USE_AUTOTUNE"] = "0"
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
 import tensorflow as tf  # noqa: E402
 
@@ -19,7 +21,6 @@ for gpu in tf.config.list_physical_devices("GPU"):
     tf.config.experimental.set_memory_growth(gpu, True)
 
 tf.random.set_seed(42)
-tf.keras.mixed_precision.set_global_policy("mixed_float16")
 
 from waste_classifier.config import PATHS, TRAIN_CFG  # noqa: E402
 from waste_classifier.data import build_datasets, download_dataset, load_test_images  # noqa: E402
