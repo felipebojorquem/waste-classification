@@ -1,0 +1,12 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  lint-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v4
+      - run: uv venv && source .venv/bin/activate
+      - run: uv pip install -e ".[dev]"
+      - run: ruff check src/ tests/
+      - run: pytest tests/ -v
