@@ -12,7 +12,6 @@ from tqdm import tqdm
 
 from waste_classifier.config import DATA_CFG, PATHS
 
-
 # ── Download & extract ───────────────────────────────────────────────
 
 def download_dataset(url: str = DATA_CFG.dataset_url, dest: Path = PATHS.root / "data") -> Path:

@@ -16,4 +16,4 @@ def test_paths_resolve():
 
 
 def test_imports():
-    from waste_classifier import build_model, build_datasets, predict  # noqa: F401
+    from waste_classifier import build_datasets, build_model, predict  # noqa: F401

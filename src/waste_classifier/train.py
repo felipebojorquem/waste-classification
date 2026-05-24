@@ -7,7 +7,9 @@ import tensorflow as tf
 from waste_classifier.config import PATHS, TRAIN_CFG
 
 
-def get_callbacks(checkpoint_name: str, patience: int = TRAIN_CFG.patience) -> list[tf.keras.callbacks.Callback]:
+def get_callbacks(
+    checkpoint_name: str, patience: int = TRAIN_CFG.patience,
+) -> list[tf.keras.callbacks.Callback]:
     """Standard callback stack: EarlyStopping + ModelCheckpoint + ReduceLROnPlateau."""
     ckpt_path = PATHS.models_dir / checkpoint_name
     ckpt_path.parent.mkdir(parents=True, exist_ok=True)

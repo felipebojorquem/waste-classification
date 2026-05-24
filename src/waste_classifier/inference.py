@@ -7,9 +7,8 @@ from pathlib import Path
 import numpy as np
 import tensorflow as tf
 
-from waste_classifier.config import DATA_CFG, MODEL_CFG
+from waste_classifier.config import DATA_CFG
 from waste_classifier.evaluate import grad_cam
-
 
 CLASS_LABELS = DATA_CFG.class_labels  # {0: "Organic", 1: "Recyclable"}
 
